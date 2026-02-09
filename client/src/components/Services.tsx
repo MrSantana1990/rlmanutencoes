@@ -48,12 +48,14 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {services.map((service) => {
             const Icon = service.icon;
+            const tightCrop = service.id === 'pneumatica';
             return (
               <div key={service.id} className="service-card">
                 <SafeImage
                   src={service.image}
                   alt={service.title}
                   fallbackLabel={service.title}
+                  data-crop={tightCrop ? 'tight' : undefined}
                 />
                 <div className="service-card-content">
                   <div className="flex items-start gap-4 mb-4">

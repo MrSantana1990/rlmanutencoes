@@ -227,7 +227,13 @@
   }
   
   .service-card img {
-    @apply w-full h-48 md:h-56 object-cover;
+    @apply block w-full h-48 md:h-56 object-cover;
+  }
+
+  /* Hide white borders on some source images by slightly zooming/cropping. */
+  .service-card img[data-crop="tight"] {
+    transform: scale(1.04);
+    transform-origin: center;
   }
   
   .service-card-content {
