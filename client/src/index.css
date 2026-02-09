@@ -232,8 +232,9 @@
 
   /* Hide white borders on some source images by slightly zooming/cropping. */
   .service-card img[data-crop="tight"] {
-    transform: scale(1.04);
+    transform: scale(1.12);
     transform-origin: center;
+    object-position: 50% 45%;
   }
   
   .service-card-content {
