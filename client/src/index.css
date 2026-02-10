@@ -230,11 +230,10 @@
     @apply block w-full h-48 md:h-56 object-cover;
   }
 
-  /* Hide white borders on some source images by slightly zooming/cropping. */
   .service-card img[data-crop="tight"] {
-    /* Pneumática: mostrar mais área da imagem */
-    transform: none;
-    object-position: 20% 50%;
+    /* Pneumática: menos corte (parece "zoom out") */
+    @apply h-64 md:h-72;
+    object-position: 50% 50%;
   }
   
   .service-card-content {
