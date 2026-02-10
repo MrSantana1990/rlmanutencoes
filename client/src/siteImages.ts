@@ -34,7 +34,6 @@ export const SITE_IMAGES = {
     localAsset("/images/hydraulic.jpg"),
   pneumatic:
     envUrl(import.meta.env, "VITE_PNEUMATIC_IMAGE_URL") ??
-    envUrl(import.meta.env, "VITE_HYDRAULIC_IMAGE_URL") ??
     localAsset("/images/pneumatic.jpg"),
   electrical:
     envUrl(import.meta.env, "VITE_ELECTRICAL_IMAGE_URL") ??

@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import SocialProof from '@/components/SocialProof';
+import Testimonials from '@/components/Testimonials';
 import About from '@/components/About';
 import Services from '@/components/Services';
 import Differentials from '@/components/Differentials';
@@ -16,6 +17,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <SocialProof />
+        <Testimonials />
         <About />
         <Services />
         <Differentials />
