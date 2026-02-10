@@ -11,6 +11,7 @@ Defina antes do build (ex.: no pipeline) ou via arquivo `.env.production` (não 
 - `VITE_HYDRAULIC_IMAGE_URL`
 - `VITE_PNEUMATIC_IMAGE_URL`
 - `VITE_ELECTRICAL_IMAGE_URL`
+- `VITE_ASSET_VERSION` (opcional; força refresh de `/images/*` em produção)
 
 Analytics (opcional):
 - `VITE_ANALYTICS_ENDPOINT`

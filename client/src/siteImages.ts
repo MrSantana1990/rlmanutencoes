@@ -7,24 +7,36 @@ function envUrl(env: Env, key: keyof Env): string | undefined {
   return trimmed.length > 0 ? trimmed : undefined;
 }
 
+function localAsset(path: string) {
+  if (!path.startsWith("/")) return path;
+  if (import.meta.env.DEV) {
+    const sep = path.includes("?") ? "&" : "?";
+    return `${path}${sep}t=${Date.now()}`;
+  }
+  const version = envUrl(import.meta.env, "VITE_ASSET_VERSION");
+  if (!version) return path;
+  const sep = path.includes("?") ? "&" : "?";
+  return `${path}${sep}v=${encodeURIComponent(version)}`;
+}
+
 export const SITE_IMAGES = {
   hero:
     envUrl(import.meta.env, "VITE_HERO_IMAGE_URL") ??
-    "/images/hero.jpg",
+    localAsset("/images/hero.jpg"),
   team:
     envUrl(import.meta.env, "VITE_TEAM_IMAGE_URL") ??
-    "/images/team.jpg",
+    localAsset("/images/team.jpg"),
   mechanical:
     envUrl(import.meta.env, "VITE_MECHANICAL_IMAGE_URL") ??
-    "/images/mechanical.jpg",
+    localAsset("/images/mechanical.jpg"),
   hydraulic:
     envUrl(import.meta.env, "VITE_HYDRAULIC_IMAGE_URL") ??
-    "/images/hydraulic.jpg",
+    localAsset("/images/hydraulic.jpg"),
   pneumatic:
     envUrl(import.meta.env, "VITE_PNEUMATIC_IMAGE_URL") ??
     envUrl(import.meta.env, "VITE_HYDRAULIC_IMAGE_URL") ??
-    "/images/pneumatic.jpg",
+    localAsset("/images/pneumatic.jpg"),
   electrical:
     envUrl(import.meta.env, "VITE_ELECTRICAL_IMAGE_URL") ??
-    "/images/electrical.jpg",
+    localAsset("/images/electrical.jpg"),
 } as const;
