@@ -40,7 +40,7 @@ export default function Services() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Nossos Serviços</h2>
           <p className="text-lg text-foreground max-w-2xl mx-auto">
-            Oferecemos soluções especializadas em manutenção industrial para garantir a máxima performance de suas operações.
+            Mecânica, hidráulica, pneumática e elétrica para reduzir falhas, aumentar eficiência e manter a operação segura.
           </p>
         </div>
 
@@ -48,14 +48,14 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {services.map((service) => {
             const Icon = service.icon;
-            const tightCrop = service.id === 'pneumatica';
+            const showMore = service.id === 'pneumatica';
             return (
               <div key={service.id} className="service-card">
                 <SafeImage
                   src={service.image}
                   alt={service.title}
                   fallbackLabel={service.title}
-                  data-crop={tightCrop ? 'tight' : undefined}
+                  data-fit={showMore ? 'contain' : undefined}
                 />
                 <div className="service-card-content">
                   <div className="flex items-start gap-4 mb-4">

@@ -230,10 +230,9 @@
     @apply block w-full h-48 md:h-56 object-cover;
   }
 
-  .service-card img[data-crop="tight"] {
-    /* Pneumática: menos corte (parece "zoom out") */
-    @apply h-64 md:h-72;
-    object-position: 50% 50%;
+  .service-card img[data-fit="contain"] {
+    /* Pneumática: mostrar mais detalhes (sem cortar) */
+    @apply h-64 md:h-72 object-contain bg-white;
   }
   
   .service-card-content {

@@ -1,14 +1,11 @@
 import { MessageCircle } from 'lucide-react';
-
-const WHATSAPP_NUMBER = '5519974064876';
+import { getWhatsAppUrl, SITE_CONFIG } from '@/siteConfig';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const handleWhatsAppClick = () => {
-    const message = 'Olá! Gostaria de conhecer mais sobre os serviços de manutenção industrial da RL Manutenções.';
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    window.open(getWhatsAppUrl(), '_blank');
   };
 
   return (
@@ -21,10 +18,10 @@ export default function Footer() {
               <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center">
                 <span className="font-bold">RL</span>
               </div>
-              <h3 className="text-xl font-bold">RL Manutenções</h3>
+              <h3 className="text-xl font-bold">{SITE_CONFIG.companyName}</h3>
             </div>
             <p className="text-white/80 leading-relaxed">
-              Especializada em manutenção industrial integrada com soluções completas para máxima performance e segurança.
+              Manutenção industrial integrada com foco em produtividade, segurança e redução de paradas.
             </p>
           </div>
 
@@ -62,10 +59,10 @@ export default function Footer() {
               <div>
                 <p className="text-white/80 text-sm mb-2">WhatsApp / Telefone:</p>
                 <a
-                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  href={getWhatsAppUrl()}
                   className="text-accent font-semibold hover:underline"
                 >
-                  (19) 97406-4876
+                  {SITE_CONFIG.phoneDisplay}
                 </a>
               </div>
               <button

@@ -1,22 +1,17 @@
 import { MessageCircle, Phone, Mail, MapPin } from 'lucide-react';
-
-const WHATSAPP_NUMBER = '5519974064876';
-const WHATSAPP_MESSAGE = 'Olá! Gostaria de conhecer mais sobre os serviços de manutenção industrial da RL Manutenções.';
-const PHONE_NUMBER = '(19) 97406-4876';
-const EMAIL = 'contato@rlmanutencoes.com.br';
+import { getWhatsAppUrl, SITE_CONFIG } from '@/siteConfig';
 
 export default function Contact() {
   const handleWhatsAppClick = () => {
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-    window.open(url, '_blank');
+    window.open(getWhatsAppUrl(), '_blank');
   };
 
   const handlePhoneClick = () => {
-    window.location.href = `tel:${WHATSAPP_NUMBER.replace(/\D/g, '')}`;
+    window.location.href = `tel:${SITE_CONFIG.whatsappNumber.replace(/\D/g, '')}`;
   };
 
   const handleEmailClick = () => {
-    window.location.href = `mailto:${EMAIL}`;
+    window.location.href = `mailto:${SITE_CONFIG.email}`;
   };
 
   return (
@@ -25,8 +20,13 @@ export default function Contact() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white">Entre em Contato</h2>
           <p className="text-lg text-white/80 max-w-2xl mx-auto">
-            Precisa de uma solução em manutenção industrial? Fale conosco agora mesmo e receba um atendimento especializado.
+            Paradas custam caro. Fale conosco agora mesmo e receba um atendimento técnico rápido para reduzir riscos e recuperar a produção.
           </p>
+        </div>
+
+        <div className="flex items-center justify-center gap-3 text-white/80 mb-10">
+          <MapPin size={18} className="text-accent" />
+          <p className="text-sm md:text-base">{SITE_CONFIG.serviceArea}</p>
         </div>
 
         {/* Contact Methods */}
@@ -39,7 +39,7 @@ export default function Contact() {
               </div>
             </div>
             <h3 className="text-2xl font-bold text-white mb-4">WhatsApp</h3>
-            <p className="text-white/80 mb-6 text-lg">{PHONE_NUMBER}</p>
+            <p className="text-white/80 mb-6 text-lg">{SITE_CONFIG.phoneDisplay}</p>
             <button
               onClick={handleWhatsAppClick}
               className="btn-cta w-full flex items-center justify-center gap-2"
@@ -57,7 +57,7 @@ export default function Contact() {
               </div>
             </div>
             <h3 className="text-2xl font-bold text-white mb-4">Telefone</h3>
-            <p className="text-white/80 mb-6 text-lg">{PHONE_NUMBER}</p>
+            <p className="text-white/80 mb-6 text-lg">{SITE_CONFIG.phoneDisplay}</p>
             <button
               onClick={handlePhoneClick}
               className="btn-cta w-full flex items-center justify-center gap-2"
@@ -75,7 +75,7 @@ export default function Contact() {
               </div>
             </div>
             <h3 className="text-2xl font-bold text-white mb-4">Email</h3>
-            <p className="text-white/80 mb-6 text-lg">{EMAIL}</p>
+            <p className="text-white/80 mb-6 text-lg">{SITE_CONFIG.email}</p>
             <button
               onClick={handleEmailClick}
               className="btn-cta w-full flex items-center justify-center gap-2"

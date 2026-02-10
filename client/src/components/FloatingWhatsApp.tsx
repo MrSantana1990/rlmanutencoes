@@ -1,12 +1,9 @@
 import { MessageCircle } from 'lucide-react';
-
-const WHATSAPP_NUMBER = '5519974064876';
-const WHATSAPP_MESSAGE = 'Olá! Gostaria de conhecer mais sobre os serviços de manutenção industrial da RL Manutenções.';
+import { getWhatsAppUrl } from '@/siteConfig';
 
 export default function FloatingWhatsApp() {
   const handleWhatsAppClick = () => {
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-    window.open(url, '_blank');
+    window.open(getWhatsAppUrl(), '_blank');
   };
 
   return (

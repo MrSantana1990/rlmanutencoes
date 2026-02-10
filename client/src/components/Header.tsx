@@ -1,23 +1,44 @@
 import { Menu, X, MessageCircle } from 'lucide-react';
-import { useState } from 'react';
-
-const WHATSAPP_NUMBER = '5519974064876';
-const WHATSAPP_MESSAGE = 'Olá! Gostaria de conhecer mais sobre os serviços de manutenção industrial da RL Manutenções.';
+import { useEffect, useMemo, useState } from 'react';
+import { getWhatsAppUrl, SITE_CONFIG } from '@/siteConfig';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState<string>('#');
 
-  const navLinks = [
+  const navLinks = useMemo(() => [
     { label: 'Sobre', href: '#about' },
     { label: 'Serviços', href: '#services' },
     { label: 'Diferenciais', href: '#differentials' },
     { label: 'Contato', href: '#contact' },
-  ];
+  ], []);
 
   const handleWhatsAppClick = () => {
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
-    window.open(url, '_blank');
+    window.open(getWhatsAppUrl(), '_blank');
   };
+
+  useEffect(() => {
+    const ids = navLinks.map((l) => l.href.replace('#', '')).filter(Boolean);
+    const nodes = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    if (nodes.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0));
+        const top = visible[0]?.target?.id;
+        if (top) setActiveHash(`#${top}`);
+      },
+      { rootMargin: '-20% 0px -70% 0px', threshold: [0.1, 0.2, 0.35] },
+    );
+
+    nodes.forEach((n) => observer.observe(n));
+    return () => observer.disconnect();
+  }, [navLinks]);
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
@@ -29,8 +50,8 @@ export default function Header() {
               <span className="text-white font-bold text-lg md:text-xl">RL</span>
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-lg md:text-xl font-bold text-primary">RL Manutenções</h1>
-              <p className="text-xs md:text-sm text-muted-foreground">Industrial Integrada</p>
+              <h1 className="text-lg md:text-xl font-bold text-primary">{SITE_CONFIG.companyName}</h1>
+              <p className="text-xs md:text-sm text-muted-foreground">{SITE_CONFIG.tagline}</p>
             </div>
           </div>
 
@@ -40,7 +61,11 @@ export default function Header() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-foreground hover:text-accent font-medium transition-colors"
+                aria-current={activeHash === link.href ? 'page' : undefined}
+                className={[
+                  'text-foreground hover:text-accent font-medium transition-colors',
+                  activeHash === link.href ? 'text-accent' : '',
+                ].join(' ')}
               >
                 {link.label}
               </a>
@@ -53,7 +78,7 @@ export default function Header() {
             className="hidden md:flex items-center gap-2 btn-cta"
           >
             <MessageCircle size={20} />
-            WhatsApp
+            Orçamento
           </button>
 
           {/* Mobile Menu Button */}

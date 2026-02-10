@@ -1,4 +1,5 @@
 import { Shield, Lightbulb, Clock } from 'lucide-react';
+import { SITE_CONFIG } from '@/siteConfig';
 
 export default function Differentials() {
   const differentials = [
@@ -24,9 +25,9 @@ export default function Differentials() {
     <section id="differentials" className="section section-light">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Por Que Escolher a RL Manutenções</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Por que escolher a {SITE_CONFIG.companyName}</h2>
           <p className="text-lg text-foreground max-w-2xl mx-auto">
-            Contamos com uma equipe especializada e comprometida com a excelência em cada projeto.
+            Estratégia + execução: planejamento de manutenção, suporte técnico e foco em produtividade com segurança.
           </p>
         </div>
 
