@@ -247,17 +247,9 @@
     @apply relative z-10 block w-full h-full object-cover;
   }
 
-  .service-card-media[data-fit="contain"] {
-    @apply h-64 md:h-72 bg-card;
-  }
-
-  .service-card-media[data-fit="contain"]::before {
-    opacity: 0.6;
-    filter: blur(18px);
-  }
-
-  .service-card-media[data-fit="contain"] .service-card-media-img {
-    @apply object-contain p-3 md:p-4;
+  /* Pneumática: posicionar melhor (reduz fundo “vazio”) */
+  .service-card[data-service="pneumatica"] .service-card-media-img {
+    object-position: 55% 65%;
   }
   
   .service-card-content {

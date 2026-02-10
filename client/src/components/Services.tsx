@@ -49,12 +49,10 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {services.map((service) => {
             const Icon = service.icon;
-            const showMore = service.id === 'pneumatica';
             return (
-              <div key={service.id} className="service-card">
+              <div key={service.id} className="service-card" data-service={service.id}>
                 <div
                   className="service-card-media"
-                  data-fit={showMore ? 'contain' : undefined}
                   style={{ '--service-media-bg': `url("${service.image}")` } as CSSProperties}
                 >
                   <SafeImage
