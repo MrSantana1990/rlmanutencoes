@@ -226,13 +226,38 @@
     @apply hover:scale-105 hover:-translate-y-1;
   }
   
-  .service-card img {
-    @apply block w-full h-48 md:h-56 object-cover;
+  .service-card-media {
+    @apply relative w-full h-48 md:h-56 overflow-hidden;
   }
 
-  .service-card img[data-fit="contain"] {
+  .service-card-media::before {
     /* Pneumática: mostrar mais detalhes (sem cortar) */
-    @apply h-64 md:h-72 object-contain bg-white;
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--service-media-bg);
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.08);
+    filter: blur(14px);
+    opacity: 0.35;
+  }
+
+  .service-card-media-img {
+    @apply relative z-10 block w-full h-full object-cover;
+  }
+
+  .service-card-media[data-fit="contain"] {
+    @apply h-64 md:h-72 bg-card;
+  }
+
+  .service-card-media[data-fit="contain"]::before {
+    opacity: 0.6;
+    filter: blur(18px);
+  }
+
+  .service-card-media[data-fit="contain"] .service-card-media-img {
+    @apply object-contain p-3 md:p-4;
   }
   
   .service-card-content {

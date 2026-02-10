@@ -1,6 +1,9 @@
 # RL Manutenções — Site
 
-Site institucional (one-page) construído com **Vite + React + TypeScript** e um servidor **Express** para servir o build em produção.
+Site institucional (one-page) da RL Manutenções.
+
+- Frontend: **Vite + React + TypeScript**
+- Produção (opcional): **Express** servindo o build (`dist/`)
 
 ## Rodar local (dev)
 ```bash
@@ -8,20 +11,35 @@ pnpm install
 pnpm dev
 ```
 
-Abre em `http://localhost:3000`.
+Abrir: `http://localhost:3000`
 
-## Build e produção
+## Build e produção (Node/Express)
 ```bash
 pnpm build
 pnpm start
 ```
 
 ## Deploy no Netlify
-- **Build command:** `pnpm build:netlify`
+Este repositório já inclui `netlify.toml`.
+
+- **Build command:** `pnpm run build:netlify`
 - **Publish directory:** `dist/public`
-- SPA routing já está configurado via `client/public/_redirects`.
+- SPA routing: `client/public/_redirects`
 
-## Imagens
-Por padrão o projeto usa imagens locais em `client/public/images`.
+## Variáveis de ambiente (imagens/WhatsApp)
+- Ver `.env.example` e `STAGING.md`
+- Por padrão o projeto usa imagens locais em `client/public/images`
 
-Para apontar para AWS/CloudFront no staging/produção, defina as variáveis `VITE_*_IMAGE_URL` (veja `.env.example`).
+## Git (subir atualizações)
+```bash
+git status
+git add -A
+git commit -m "Seu commit aqui"
+git push
+```
+
+Primeira vez no repositório remoto:
+```bash
+git remote add origin https://github.com/MrSantana1990/rlmanutencoes.git
+git push -u origin main
+```

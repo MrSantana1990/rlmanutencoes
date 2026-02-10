@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { Wrench, Droplet, Wind, Zap } from 'lucide-react';
 import { SITE_IMAGES } from '@/siteImages';
 import SafeImage from '@/components/SafeImage';
@@ -51,12 +52,18 @@ export default function Services() {
             const showMore = service.id === 'pneumatica';
             return (
               <div key={service.id} className="service-card">
-                <SafeImage
-                  src={service.image}
-                  alt={service.title}
-                  fallbackLabel={service.title}
+                <div
+                  className="service-card-media"
                   data-fit={showMore ? 'contain' : undefined}
-                />
+                  style={{ '--service-media-bg': `url("${service.image}")` } as CSSProperties}
+                >
+                  <SafeImage
+                    className="service-card-media-img"
+                    src={service.image}
+                    alt={service.title}
+                    fallbackLabel={service.title}
+                  />
+                </div>
                 <div className="service-card-content">
                   <div className="flex items-start gap-4 mb-4">
                     <Icon size={32} className="text-accent flex-shrink-0 mt-1" />
